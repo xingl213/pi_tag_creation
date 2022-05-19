@@ -1,0 +1,48 @@
+.row-header{
+    margin:0px auto;
+    padding:0px auto;
+}
+
+.row-content {
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height:400px;
+}
+
+.footer{
+    background-color: black;
+    text-decoration-color: #ffffff;
+    margin:0px auto;
+    padding: 20px 0px 20px 0px;
+}
+
+.navbar-dark {
+    background-color: black;
+}
+
+.copyright {
+    color: white;
+    text-align: right;
+}
+
+.footer-list-item {
+    text-align: center;
+}
+
+.footer-list-item:hover {
+    background-color: lightskyblue;
+}
+
+h4 {
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: lightcyan;
+}
+
+.card-title-highlight {
+    background-color: lightcyan;
+    text-align: center;
+}

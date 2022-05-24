@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import FileUpload from './FileUpload';
 
 class Step1 extends Component {
 
@@ -193,6 +194,9 @@ class Step1 extends Component {
 
 				<div>
 					{field}
+				</div>
+				<div>
+					<FileUpload />
 				</div>
 			</div>
 		);

@@ -160,6 +160,7 @@ class Step1 extends Component {
 
 		return(
 			<div className="container mt-2">
+				<h1>Enter PI Tag Information</h1>
 				<div className="m-2">
 					<span>PI Tag Name: </span>
 					<input value={this.state.piTagInfo.piTagName} onChange={evt => this.updatePiTagName(evt)}/>
@@ -195,6 +196,10 @@ class Step1 extends Component {
 				<div>
 					{field}
 				</div>
+
+				<hr/>
+				
+				<h1>Upload an Excel File</h1>
 				<div>
 					<FileUpload />
 				</div>

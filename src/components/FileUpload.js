@@ -11,7 +11,7 @@ function FileUpload() {
 
   return (
     <div id="upload-box">
-      <input type="file" onChange={handleUpload} />
+      <input type="file" accept=".xlsx" onChange={handleUpload} />
       <p>Filename: {file.name}</p>
       <p>File type: {file.type}</p>
       <p>File size: {file.size} bytes</p>

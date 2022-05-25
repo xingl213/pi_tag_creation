@@ -26,7 +26,7 @@ class Header extends Component {
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><strong>Create a PI Tag</strong></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><strong>Create PI Tags</strong></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="justify-content-center nav-pills nav-justified mt-2" style={{ width: "100%" }}>
                             <NavItem>

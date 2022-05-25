@@ -19,7 +19,7 @@ function FileUpload() {
 
     return (
         <div>
-            <input type="file" onChange={onChange} />
+            <input type="file" accept=".xlsx" onChange={onChange} />
         </div>
     );
 }

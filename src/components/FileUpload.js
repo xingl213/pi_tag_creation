@@ -1,27 +1,78 @@
-import React from 'react';
-import * as XLSX from 'xlsx';
+import { useState } from "react";
+import Papa from "papaparse";
 
 function FileUpload() {
-    const onChange = (e) => {
-        const [file] = e.target.files;
-        const reader = new FileReader();
+  // State to store parsed data
+  const [parsedData, setParsedData] = useState([]);
 
-        reader.onload = (evt) => {
-            const bstr = evt.target.result;
-            const wb = XLSX.read(bstr, { type: "binary" });
-            const wsname = wb.SheetNames[0];
-            const ws = wb.Sheets[wsname];
-            const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
-            console.log(data);
-        };
-        reader.readAsBinaryString(file);
-    };
+  //State to store table Column name
+  const [tableRows, setTableRows] = useState([]);
 
-    return (
-        <div>
-            <input type="file" accept=".xlsx" onChange={onChange} />
-        </div>
-    );
+  //State to store the values
+  const [values, setValues] = useState([]);
+
+  const changeHandler = (event) => {
+    // Passing file data (event.target.files[0]) to parse using Papa.parse
+    Papa.parse(event.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        const rowsArray = [];
+        const valuesArray = [];
+
+        // Iterating data to get column name and their values
+        results.data.map((d) => {
+          rowsArray.push(Object.keys(d));
+          valuesArray.push(Object.values(d));
+        });
+
+        // Parsed Data Response in array format
+        setParsedData(results.data);
+
+        // Filtered Column Names
+        setTableRows(rowsArray[0]);
+
+        // Filtered Values
+        setValues(valuesArray);
+      },
+    });
+  };
+
+  return (
+    <div>
+      {/* File Uploader */}
+      <input
+        type="file"
+        name="file"
+        onChange={changeHandler}
+        accept=".csv"
+        style={{ display: "block", margin: "10px auto" }}
+      />
+      <br />
+      <br />
+      {/* Table */}
+      <table>
+        <thead>
+          <tr>
+            {tableRows.map((rows, index) => {
+              return <th key={index}>{rows}</th>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {values.map((value, index) => {
+            return (
+              <tr key={index}>
+                {value.map((val, i) => {
+                  return <td key={i}>{val}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default FileUpload;

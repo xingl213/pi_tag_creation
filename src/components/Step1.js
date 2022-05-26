@@ -156,7 +156,7 @@ class Step1 extends Component {
 
 	render() {
 		// debugging purpose for now
-		const field = this.state.piTagInfo.piTagName + ' ' + this.state.piTagInfo.description + ' ' + this.state.piTagInfo.instrTag + ' ' + this.state.piTagInfo.dataType + ' ' + this.state.piTagInfo.maxVal + ' ' + this.state.piTagInfo.minVal + ' ' + this.state.piTagInfo.freq;
+		const field  = this.state.piTagInfo.piTagName + ' ' + this.state.piTagInfo.description + ' ' + this.state.piTagInfo.instrTag + ' ' + this.state.piTagInfo.dataType + ' ' + this.state.piTagInfo.maxVal + ' ' + this.state.piTagInfo.minVal + ' ' + this.state.piTagInfo.freq;
 
 		return(
 			<div className="container mt-2">

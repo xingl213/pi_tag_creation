@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Table } from 'reactstrap';
 import Papa from "papaparse";
+import csv_template from '../assets/csv_pi_tag_template.csv';
 
 function FileUpload() {
   // State to store parsed data
@@ -40,6 +42,76 @@ function FileUpload() {
 
   return (
     <div>
+      <a href={csv_template} download>Download PI tag creation template</a>
+      <Table
+      >
+        <thead>
+          <tr>
+            <th>
+              PI Tag Name
+            </th>
+            <th>
+              descriptor
+            </th>
+            <th>
+              digitalset
+            </th>
+            <th>
+              engunits
+            </th>
+            <th>
+              instrumenttag
+            </th>
+            <th>
+              pointtype
+            </th>
+            <th>
+              span
+            </th>
+            <th>
+              zero
+            </th>
+            <th>
+              step
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>pi_tag_name_ex1</td>
+            <td>descriptor_ex1</td>
+            <td>digital_set_ex1</td>
+            <td>eng_units_ex1</td>
+            <td>instrument_tag_ex1</td>
+            <td>point_type_ex1</td>
+            <td>span_ex1</td>
+            <td>zero_ex1</td>
+            <td>step_ex1</td>
+          </tr>
+          <tr>
+            <td>pi_tag_name_ex2</td>
+            <td>descriptor_ex2</td>
+            <td>digital_set_ex2</td>
+            <td>eng_units_ex2</td>
+            <td>instrument_tag_ex2</td>
+            <td>point_type_ex2</td>
+            <td>span_ex2</td>
+            <td>zero_ex2</td>
+            <td>step_ex2</td>
+          </tr>
+          <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+        </tbody>
+      </Table>
       {/* File Uploader */}
       <input
         type="file"

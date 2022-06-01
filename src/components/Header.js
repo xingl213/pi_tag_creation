@@ -30,13 +30,13 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="justify-content-center nav-pills nav-justified mt-2" style={{ width: "100%" }}>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/step1'>Step 1: Enter PI Tag Information</NavLink>
+                                <NavLink className="nav-link"  to='/step1'>Step 1: Input and Validate</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/step2'>Step 2: Placeholder</NavLink>
+                                <NavLink className="nav-link" to='/step2'>Step 2: Publish</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/step3'>Step 3: Placeholder</NavLink>
+                                <NavLink className="nav-link"  to='/step3'>Step 3: Success</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

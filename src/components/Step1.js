@@ -190,7 +190,7 @@ class Step1 extends Component {
 					<input value={this.state.piTagInfo.freq} onChange={evt => this.updateFreq(evt)}/>
 				</div>
 				<div>
-					<Button color="primary" onClick={this.validate}>Validate</Button>
+					<Button onClick={this.validate}>Validate</Button>
 				</div>
 
 				<div>

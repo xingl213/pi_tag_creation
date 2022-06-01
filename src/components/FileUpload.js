@@ -40,15 +40,17 @@ function FileUpload() {
     });
   };
 
-  // console.log(values);
   var issueMsg = "";
   for (var i = 0; i < values.length; i++) {
+    // check if any tag name contains space character
     if (values[i][0].includes(' ')) {
       issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " contains illegal character: space.\n";
     }
+    // check if any tag name is empty
     if (values[i][0] === '') {
       issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " is empty string.\n";
     }
+    // check if any instrument tag is empty
     if (values[i][4] === '') {
       issueMsg = issueMsg + "Instrument tag on row " + (i+2).toString() + " is empty string.\n";
     }
@@ -56,7 +58,7 @@ function FileUpload() {
 
   return (
     <div>
-      <a href={csv_template} download>Download PI tag creation template</a>
+      Download PI tag creation template <a href={csv_template} download>Here</a>
 
       <Table
       >

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Table } from 'reactstrap';
+import { Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import Papa from "papaparse";
 import csv_template from '../assets/csv_pi_tag_template.csv';
 
@@ -40,9 +40,24 @@ function FileUpload() {
     });
   };
 
+  // console.log(values);
+  var issueMsg = "";
+  for (var i = 0; i < values.length; i++) {
+    if (values[i][0].includes(' ')) {
+      issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " contains illegal character: space.\n";
+    }
+    if (values[i][0] === '') {
+      issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " is empty string.\n";
+    }
+    if (values[i][4] === '') {
+      issueMsg = issueMsg + "Instrument tag on row " + (i+2).toString() + " is empty string.\n";
+    }
+  }
+
   return (
     <div>
       <a href={csv_template} download>Download PI tag creation template</a>
+
       <Table
       >
         <thead>
@@ -112,6 +127,17 @@ function FileUpload() {
           </tr>
         </tbody>
       </Table>
+
+      <Card>
+        <CardBody>
+          <CardTitle tag="h5" style={{ color: "red" }}>Issues</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Fix the following issues and upload again</CardSubtitle>
+          <CardText>
+            <span style={{ color: "red" }}>{issueMsg}</span>
+          </CardText>
+        </CardBody>
+      </Card>
+
       {/* File Uploader */}
       <input
         type="file"

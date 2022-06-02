@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import { Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import Papa from "papaparse";
 import csv_template from '../assets/csv_pi_tag_template.csv';
 
@@ -60,7 +60,7 @@ function Step1(props) {
   return (
     <div className="container">
     	<h1>Upload an excel file</h1>
-      Download PI tag creation template <a href={csv_template} download>Here</a>
+      Download and fill in the PI tag creation template <a href={csv_template} download>Here</a>
 
       <Table
       >

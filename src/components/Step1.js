@@ -1,211 +1,180 @@
-import React, { Component } from 'react';
-import { Button } from 'reactstrap';
-import FileUpload from './FileUpload';
+import React, { useState } from 'react';
+import { Button, Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import Papa from "papaparse";
+import csv_template from '../assets/csv_pi_tag_template.csv';
 
-class Step1 extends Component {
+function Step1(props) {
 
-	constructor(props) {
-		super(props);
+  // State to store parsed data
+  const [parsedData, setParsedData] = useState([]);
 
-		const piTagInfoParent = props.piTagInfo;
+  //State to store table Column name
+  const [tableRows, setTableRows] = useState([]);
 
-		this.state = {
-			piTagInfo: {
-				piTagName: piTagInfoParent.piTagName,
-				description: piTagInfoParent.description, 
-				instrTag: piTagInfoParent.instrTag,
-				dataType: piTagInfoParent.dataType,
-				maxVal: piTagInfoParent.maxVal,
-				minVal: piTagInfoParent.minVal,
-				freq: piTagInfoParent.freq
-			}
-		};
+  //State to store the values
+  const [values, setValues] = useState([]);
 
-		this.validate = this.validate.bind(this);
-	}
+  const changeHandler = (event) => {
+    // Passing file data (event.target.files[0]) to parse using Papa.parse
+    Papa.parse(event.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        const rowsArray = [];
+        const valuesArray = [];
 
-	// send modified state data to MainCompoenent
-	sendData(props) {
-		props.parentCallback(this.state.piTagInfo);
-	}
+        // Iterating data to get column name and their values
+        results.data.map((d) => {
+          rowsArray.push(Object.keys(d));
+          valuesArray.push(Object.values(d));
+        });
 
-	// these update functions are used to update main component and step 1 component's states, called when input changes onChange
-	updatePiTagName(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: val,
-				description: this.state.piTagInfo.description, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: this.state.piTagInfo.minVal,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+        // Parsed Data Response in array format
+        setParsedData(results.data);
 
-	updateDescription(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: val, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: this.state.piTagInfo.minVal,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+        // Filtered Column Names
+        setTableRows(rowsArray[0]);
 
-	updateInstrTag(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: this.state.piTagInfo.description, 
-				instrTag: val,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: this.state.piTagInfo.minVal,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+        // Filtered Values
+        setValues(valuesArray);
+      },
+    });
+  };
 
-	updateDataType(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: this.state.piTagInfo.description, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: val,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: this.state.piTagInfo.minVal,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+  var issueMsg = "";
+  for (var i = 0; i < values.length; i++) {
+    // check if any tag name contains space character
+    if (values[i][0].includes(' ')) {
+      issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " contains illegal character: space.\n";
+    }
+    // check if any tag name is empty
+    if (values[i][0] === '') {
+      issueMsg = issueMsg + "Tag name on row " + (i+2).toString() + " is empty string.\n";
+    }
+    // check if any instrument tag is empty
+    if (values[i][4] === '') {
+      issueMsg = issueMsg + "Instrument tag on row " + (i+2).toString() + " is empty string.\n";
+    }
+  }
 
-	updateMaxVal(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: this.state.piTagInfo.description, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: val,
-				minVal: this.state.piTagInfo.minVal,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+  return (
+    <div className="container">
+    	<h1>Upload an excel file</h1>
+      Download PI tag creation template <a href={csv_template} download>Here</a>
 
-	updateMinVal(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: this.state.piTagInfo.description, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: val,
-				freq: this.state.piTagInfo.freq
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+      <Table
+      >
+        <thead>
+          <tr>
+            <th>
+              PI Tag Name
+            </th>
+            <th>
+              descriptor
+            </th>
+            <th>
+              digitalset
+            </th>
+            <th>
+              engunits
+            </th>
+            <th>
+              instrumenttag
+            </th>
+            <th>
+              pointtype
+            </th>
+            <th>
+              span
+            </th>
+            <th>
+              zero
+            </th>
+            <th>
+              step
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>pi_tag_name_ex1</td>
+            <td>descriptor_ex1</td>
+            <td>digital_set_ex1</td>
+            <td>eng_units_ex1</td>
+            <td>instrument_tag_ex1</td>
+            <td>point_type_ex1</td>
+            <td>span_ex1</td>
+            <td>zero_ex1</td>
+            <td>step_ex1</td>
+          </tr>
+          <tr>
+            <td>pi_tag_name_ex2</td>
+            <td>descriptor_ex2</td>
+            <td>digital_set_ex2</td>
+            <td>eng_units_ex2</td>
+            <td>instrument_tag_ex2</td>
+            <td>point_type_ex2</td>
+            <td>span_ex2</td>
+            <td>zero_ex2</td>
+            <td>step_ex2</td>
+          </tr>
+          <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+        </tbody>
+      </Table>
 
-	updateFreq(evt) {
-		const val = evt.target.value;
-		this.setState({
-			piTagInfo: {
-				piTagName: this.state.piTagInfo.piTagName,
-				description: this.state.piTagInfo.description, 
-				instrTag: this.state.piTagInfo.instrTag,
-				dataType: this.state.piTagInfo.dataType,
-				maxVal: this.state.piTagInfo.maxVal,
-				minVal: this.state.piTagInfo.minVal,
-				freq: val
-			}			
-		});
-		// pass state change to MainComponent
-		this.sendData();
-	}
+      <Card>
+        <CardBody>
+          <CardTitle tag="h5" style={{ color: "red" }}>Issues</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Fix the following issues and upload again</CardSubtitle>
+          <CardText>
+            <span style={{ color: "red" }}>{issueMsg}</span>
+          </CardText>
+        </CardBody>
+      </Card>
 
-	validate() {
-		// TODO: empty string validation
-		// TODO: business rules validation
-	}
-
-	render() {
-		// debugging purpose for now
-		const field  = this.state.piTagInfo.piTagName + ' ' + this.state.piTagInfo.description + ' ' + this.state.piTagInfo.instrTag + ' ' + this.state.piTagInfo.dataType + ' ' + this.state.piTagInfo.maxVal + ' ' + this.state.piTagInfo.minVal + ' ' + this.state.piTagInfo.freq;
-
-		return(
-			<div className="container mt-2">
-				<h1>Create a single PI tag</h1>
-				<div className="m-2">
-					<span>PI Tag Name: </span>
-					<input value={this.state.piTagInfo.piTagName} onChange={evt => this.updatePiTagName(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Description: </span>
-					<input value={this.state.piTagInfo.description} onChange={evt => this.updateDescription(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Instrument Tag: </span>
-					<input value={this.state.piTagInfo.instrTag} onChange={evt => this.updateInstrTag(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Data Type: </span>
-					<input value={this.state.piTagInfo.dataType} onChange={evt => this.updateDataType(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Max Value: </span>
-					<input value={this.state.piTagInfo.maxVal} onChange={evt => this.updateMaxVal(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Min Value: </span>
-					<input value={this.state.piTagInfo.minVal} onChange={evt => this.updateMinVal(evt)}/>
-				</div>
-				<div className="m-2">
-					<span>Frequency: </span>
-					<input value={this.state.piTagInfo.freq} onChange={evt => this.updateFreq(evt)}/>
-				</div>
-				<div>
-					<Button onClick={this.validate}>Validate</Button>
-				</div>
-
-				<div>
-					{field}
-				</div>
-
-				<hr/>
-				
-				<h1>Or, upload an Excel File</h1>
-				<div>
-					<FileUpload />
-				</div>
-			</div>
-		);
-	}
+      {/* File Uploader */}
+      <input
+        type="file"
+        name="file"
+        onChange={changeHandler}
+        accept=".csv"
+        style={{ display: "block", margin: "10px auto" }}
+      />
+      <br />
+      <br />
+      {/* Table */}
+      <table>
+        <thead>
+          <tr>
+            {tableRows.map((rows, index) => {
+              return <th key={index}>{rows}</th>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {values.map((value, index) => {
+            return (
+              <tr key={index}>
+                {value.map((val, i) => {
+                  return <td key={i}>{val}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default Step1;

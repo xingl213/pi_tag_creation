@@ -10,17 +10,7 @@ class Main extends Component {
 	constructor(props) {
 		super(props);
 
-		// TODO: change this to store a list of pi tags instead of just one
 		this.state = {
-			piTagInfo: {
-				piTagName: "",
-				description: '', 
-				instrTag: '',
-				dataType: '',
-				maxVal: '',
-				minVal: '',
-				freq: ''
-			}
 		};
 	}
 
@@ -35,7 +25,7 @@ class Main extends Component {
 			<div>
 				<Header />
 				<Switch>
-					<Route path='/step1' component={() => <Step1 piTagInfo={this.state.piTagInfo} parentCallback={this.callbackFunction} />} />
+					<Route path='/step1' component={() => <Step1 parentCallback={this.callbackFunction} />} />
 					<Route exact path='/step2' component={Step2} />
 					<Route exact path='/step3' component={Step3} />
 					<Redirect to="/step1" />

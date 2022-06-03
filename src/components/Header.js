@@ -36,7 +36,7 @@ class Header extends Component {
                                 <NavLink className="nav-link" to='/step2'>Step 2: Publish</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/step3'>Step 3: Success</NavLink>
+                                <NavLink className="nav-link"  to='/step3'>Step 3: Placeholder</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

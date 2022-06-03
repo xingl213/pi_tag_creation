@@ -10,7 +10,7 @@ class Footer extends Component {
                     <ul className="list-unstyled">
                         <li className="footer-list-item rounded"><Link to='/step1'>Step 1: Input and Validate</Link></li>
                         <li className="footer-list-item rounded"><Link to='/step2'>Step 2: Publish</Link></li>
-                        <li className="footer-list-item rounded"><Link to='/step3'>Step 3: Success</Link></li>
+                        <li className="footer-list-item rounded"><Link to='/step3'>Step 3: Placeholder</Link></li>
                     </ul>
 				</div>
 				<div className="container copyright">© Copyright 2022 Rio Tinto</div>

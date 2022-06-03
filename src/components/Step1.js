@@ -46,83 +46,104 @@ function Step1(props) {
 
   return (
     <div className="container">
-    	<br/>
-    	<h1>Upload an excel file</h1>
-      Download and fill in the PI tag creation template <a href={csv_template} download>HERE</a>. Or you can create an excel file formatted like this:
 
-      <Table
-      >
-        <thead>
-          <tr>
-            <th>
-              PI Tag Name
-            </th>
-            <th>
-              descriptor
-            </th>
-            <th>
-              digitalset
-            </th>
-            <th>
-              engunits
-            </th>
-            <th>
-              instrumenttag
-            </th>
-            <th>
-              pointtype
-            </th>
-            <th>
-              span
-            </th>
-            <th>
-              zero
-            </th>
-            <th>
-              step
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>pi_tag_name_ex1</td>
-            <td>descriptor_ex1</td>
-            <td>digital_set_ex1</td>
-            <td>eng_units_ex1</td>
-            <td>instrument_tag_ex1</td>
-            <td>point_type_ex1</td>
-            <td>span_ex1</td>
-            <td>zero_ex1</td>
-            <td>step_ex1</td>
-          </tr>
-          <tr>
-            <td>pi_tag_name_ex2</td>
-            <td>descriptor_ex2</td>
-            <td>digital_set_ex2</td>
-            <td>eng_units_ex2</td>
-            <td>instrument_tag_ex2</td>
-            <td>point_type_ex2</td>
-            <td>span_ex2</td>
-            <td>zero_ex2</td>
-            <td>step_ex2</td>
-          </tr>
-          <tr>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-          </tr>
-        </tbody>
-      </Table>
+    	<br/>
+
+			<div>
+			  <Card>
+			    <CardBody>
+			      <CardTitle tag="h3">
+			        Upload an excel file
+			      </CardTitle>
+			      <CardSubtitle
+			        className="mb-2 text-muted"
+			        tag="h6"
+			      >
+			        Download and fill in the PI tag creation template <a href={csv_template} download>HERE</a>. Or you can create an excel file formatted like this:
+			      </CardSubtitle>
+			    </CardBody>
+		      <Table
+		      >
+		        <thead>
+		          <tr>
+		            <th>
+		              PI Tag Name
+		            </th>
+		            <th>
+		              descriptor
+		            </th>
+		            <th>
+		              digitalset
+		            </th>
+		            <th>
+		              engunits
+		            </th>
+		            <th>
+		              instrumenttag
+		            </th>
+		            <th>
+		              pointtype
+		            </th>
+		            <th>
+		              span
+		            </th>
+		            <th>
+		              zero
+		            </th>
+		            <th>
+		              step
+		            </th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>pi_tag_name_ex1</td>
+		            <td>descriptor_ex1</td>
+		            <td>digital_set_ex1</td>
+		            <td>eng_units_ex1</td>
+		            <td>instrument_tag_ex1</td>
+		            <td>point_type_ex1</td>
+		            <td>span_ex1</td>
+		            <td>zero_ex1</td>
+		            <td>step_ex1</td>
+		          </tr>
+		          <tr>
+		            <td>pi_tag_name_ex2</td>
+		            <td>descriptor_ex2</td>
+		            <td>digital_set_ex2</td>
+		            <td>eng_units_ex2</td>
+		            <td>instrument_tag_ex2</td>
+		            <td>point_type_ex2</td>
+		            <td>span_ex2</td>
+		            <td>zero_ex2</td>
+		            <td>step_ex2</td>
+		          </tr>
+		          <tr>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		            <td>...</td>
+		          </tr>
+		        </tbody>
+		      </Table>
+			    <CardBody>
+			      <CardText>
+			        A list of issues are displayed below. If there are no issues, proceed to step 2 and publish the newly created PI tags.
+			      </CardText>
+			    </CardBody>
+			  </Card>
+			</div>
+
+			<br/>
 
       <Card>
         <CardBody>
-          <CardTitle tag="h5" style={{ color: "red" }}>Issues</CardTitle>
+          <CardTitle tag="h3" style={{ color: "red" }}>Issues</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">Please fix the following issues and upload again</CardSubtitle>
           <CardText>
           	<ul style={{ color: "blue" }}>

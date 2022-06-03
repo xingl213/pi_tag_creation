@@ -1,10 +1,10 @@
-function Validate(parsedData) {
+function Validate(parsedData) { // parsedData is an array of objects. Each object represents a row
 
   const issues = [];
   var issueMsg;
 
   for (var i = 0; i < parsedData.length; i++) {
-  	
+
     // check if any tag name contains space character
     if (parsedData[i]["PI Tag Name"].includes(' ')) {
       issueMsg = "Tag name on row " + (i+2).toString() + " contains illegal character: space.";

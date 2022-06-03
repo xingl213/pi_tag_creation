@@ -42,6 +42,12 @@ function Step1(props) {
     });
   };
 
+  // if user has uploaded a non-empty file, display row number in header; otherwise, don't
+  var rowNumberHeaderDisplay = null;
+  if (parsedData.length > 0) {
+  	rowNumberHeaderDisplay = '#';
+  }
+
   const issues = Validate(parsedData);
 
   return (
@@ -133,7 +139,7 @@ function Step1(props) {
 		      </Table>
 			    <CardBody>
 			      <CardText>
-			        A list of issues are displayed below. If there are no issues, proceed to step 2 and publish the newly created PI tags.
+			        A list of issues will be displayed below after the upload. If there is no issue, proceed to step 2 to publish the newly created PI tags.
 			      </CardText>
 			    </CardBody>
 			  </Card>
@@ -154,7 +160,7 @@ function Step1(props) {
           </CardText>
         </CardBody>
       </Card>
-
+      <br/>
       {/* File Uploader */}
       <input
         type="file"
@@ -164,12 +170,11 @@ function Step1(props) {
         style={{ display: "block", margin: "10px auto" }}
       />
       <br />
-      <br />
       {/* Table */}
       <table>
         <thead>
           <tr>
-          	<th>#</th>
+          	<th>{rowNumberHeaderDisplay}</th>
             {tableRows.map((rows, index) => {
               return <th key={index}>{rows}</th>;
             })}

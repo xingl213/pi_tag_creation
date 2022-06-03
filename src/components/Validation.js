@@ -36,6 +36,12 @@ function Validate(parsedData) { // parsedData is an array of objects. Each objec
     	issueMsg = "Tag name on row " + (i+2).toString() + " doesn't follow correct naming pattern.";
     	issues.push(issueMsg);
     }
+
+    // check if instrument tag matches allowed pattern (given it's not empty string)
+    if (parsedData[i]["instrumenttag"] !== '' && !/.+::\[.+\].+/.test(parsedData[i]["instrumenttag"])) {
+    	issueMsg = "Instrument tag on row " + (i+2).toString() + " doesn't follow correct naming pattern.";
+    	issues.push(issueMsg);
+    }
   }
 
   return issues;

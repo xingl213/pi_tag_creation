@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import Validate from './Validation';
 import Papa from "papaparse";
 import csv_template from '../assets/csv_pi_tag_template.csv';
 
@@ -41,31 +42,13 @@ function Step1(props) {
     });
   };
 
-  const issues = [];
-  var issueMsg;
-  for (var i = 0; i < values.length; i++) {
-    // check if any tag name contains space character
-    if (values[i][0].includes(' ')) {
-      issueMsg = "Tag name on row " + (i+2).toString() + " contains illegal character: space.";
-      issues.push(issueMsg);
-    }
-    // check if any tag name is empty
-    if (values[i][0] === '') {
-      issueMsg = "Tag name on row " + (i+2).toString() + " is empty string.";
-      issues.push(issueMsg);
-    }
-    // check if any instrument tag is empty
-    if (values[i][4] === '') {
-      issueMsg = "Instrument tag on row " + (i+2).toString() + " is empty string.";
-      issues.push(issueMsg);
-    }
-  }
+  const issues = Validate(parsedData);
 
   return (
     <div className="container">
     	<br/>
     	<h1>Upload an excel file</h1>
-      Download and fill in the PI tag creation template <a href={csv_template} download>Here</a>
+      Download and fill in the PI tag creation template <a href={csv_template} download>HERE</a>. Or you can create an excel file formatted like this:
 
       <Table
       >
@@ -140,15 +123,13 @@ function Step1(props) {
       <Card>
         <CardBody>
           <CardTitle tag="h5" style={{ color: "red" }}>Issues</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">Fix the following issues and upload again</CardSubtitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Please fix the following issues and upload again</CardSubtitle>
           <CardText>
-            <span style={{ color: "red" }}>
-            	<ul>
-	            	{issues.map((issue, index) => {
-	            		return <li>{issue}</li>;
-	            	})}
-            	</ul>
-            </span>
+          	<ul style={{ color: "blue" }}>
+            	{issues.map((issue, index) => {
+            		return <li key={index}>{issue}</li>;
+            	})}
+          	</ul>
           </CardText>
         </CardBody>
       </Card>

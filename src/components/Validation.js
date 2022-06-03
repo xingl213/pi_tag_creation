@@ -30,6 +30,12 @@ function Validate(parsedData) { // parsedData is an array of objects. Each objec
     	issueMsg = "Point type on row " + (i+2).toString() + " is not a valid option.";
     	issues.push(issueMsg);
     }
+
+    // check if tag name matches allowed pattern (given it's not empty string)
+    if (parsedData[i]["PI Tag Name"] !== '' && !/^KIT:\d{4}-.+/.test(parsedData[i]["PI Tag Name"])) {
+    	issueMsg = "Tag name on row " + (i+2).toString() + " doesn't follow correct naming pattern.";
+    	issues.push(issueMsg);
+    }
   }
 
   return issues;

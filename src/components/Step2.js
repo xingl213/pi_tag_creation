@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Table, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
-import Validate from './Validation';
+import { Button } from 'reactstrap';
 import Papa from "papaparse";
-import csv_template from '../assets/csv_pi_tag_template.csv';
 
 function Step2() {
 
@@ -49,8 +47,6 @@ function Step2() {
       },
     });
   };
-
-  console.log(values);
 
   return (
     <div className="container">

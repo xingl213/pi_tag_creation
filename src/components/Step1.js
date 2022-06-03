@@ -72,33 +72,15 @@ function Step1(props) {
 		      >
 		        <thead>
 		          <tr>
-		            <th>
-		              PI Tag Name
-		            </th>
-		            <th>
-		              descriptor
-		            </th>
-		            <th>
-		              digitalset
-		            </th>
-		            <th>
-		              engunits
-		            </th>
-		            <th>
-		              instrumenttag
-		            </th>
-		            <th>
-		              pointtype
-		            </th>
-		            <th>
-		              span
-		            </th>
-		            <th>
-		              zero
-		            </th>
-		            <th>
-		              step
-		            </th>
+		            <th>PI Tag Name</th>
+		            <th>descriptor</th>
+		            <th>digitalset</th>
+		            <th>engunits</th>
+		            <th>instrumenttag</th>
+		            <th>pointtype</th>
+		            <th>span</th>
+		            <th>zero</th>
+		            <th>step</th>
 		          </tr>
 		        </thead>
 		        <tbody>

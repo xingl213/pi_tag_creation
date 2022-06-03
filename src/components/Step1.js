@@ -169,6 +169,7 @@ function Step1(props) {
       <table>
         <thead>
           <tr>
+          	<th>#</th>
             {tableRows.map((rows, index) => {
               return <th key={index}>{rows}</th>;
             })}
@@ -178,6 +179,7 @@ function Step1(props) {
           {values.map((value, index) => {
             return (
               <tr key={index}>
+              	<td>{index + 2}</td>
                 {value.map((val, i) => {
                   return <td key={i}>{val}</td>;
                 })}

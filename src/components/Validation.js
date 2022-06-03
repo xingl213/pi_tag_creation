@@ -3,6 +3,8 @@ function Validate(parsedData) { // parsedData is an array of objects. Each objec
   const issues = [];
   var issueMsg;
 
+  const validPointTypes = new Set(['digital', 'int16', 'int32', 'float16', 'float32', 'float64', 'string', 'timestamp', 'blob']);
+
   for (var i = 0; i < parsedData.length; i++) {
 
     // check if any tag name contains space character
@@ -21,6 +23,12 @@ function Validate(parsedData) { // parsedData is an array of objects. Each objec
     if (parsedData[i]["instrumenttag"] === '') {
       issueMsg = "Instrument tag on row " + (i+2).toString() + " is empty string.";
       issues.push(issueMsg);
+    }
+
+    // check if point type is valid
+    if (!validPointTypes.has(parsedData[i]["pointtype"].toLowerCase())) {
+    	issueMsg = "Point type on row " + (i+2).toString() + " is not a valid option.";
+    	issues.push(issueMsg);
     }
   }
 

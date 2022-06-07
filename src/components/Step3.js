@@ -51,8 +51,7 @@ function Step3() {
   return (
     <div className="container">
     	<br/>
-    	<h3>Please publish after completing step 2</h3>
-    	<br/>
+    	<h3>(After completing step 2)</h3>
 
       {/* File Uploader */}
       <input
@@ -62,7 +61,6 @@ function Step3() {
         accept=".csv"
         style={{ display: "block", margin: "10px auto" }}
       />
-      <br/>
 
 			<Button onClick={handlePublish}>Publish</Button>
 

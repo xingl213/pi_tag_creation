@@ -131,8 +131,25 @@ function Step1(props) {
 
       <Card>
         <CardBody>
+          <CardTitle tag="h3">Instructions</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Follow these guidelines to create the excel file</CardSubtitle>
+          <CardText>
+          	<ul>
+            	<li>Point type is one of: digital, int16, int32, float16, float32, float64, string, blob, timestamp (not case sensitive)</li>
+            	<li>Don't leave any required field empty</li>
+            	<li>PI Tag structure: KIT:<strong>Sector Number</strong>-<strong>Name</strong></li>
+            	<li>Instrument tag structure: <strong>PLC Server</strong>::[<strong>PLC Name on the Server</strong>]<strong>Instrument Tag</strong></li>
+          	</ul>
+          </CardText>
+        </CardBody>
+      </Card>
+
+			<br/>
+
+      <Card>
+        <CardBody>
           <CardTitle tag="h3" style={{ color: "red" }}>Issues</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">Please fix the following issues and upload again</CardSubtitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Refer back to the instructions, fix the following issues, and upload again</CardSubtitle>
           <CardText>
           	<ul style={{ color: "blue" }}>
             	{issues.map((issue, index) => {

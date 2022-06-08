@@ -11,6 +11,30 @@ function Step3() {
   const [tableRows, setTableRows] = useState([]);
   const [values, setValues] = useState([]);
 
+// POST template: right now this code gets 400 bad request error when sending in chrome dev tools console
+// fetch("https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points",
+// {
+//     method: "POST",
+// 	  headers: {
+// 	    'Accept': 'application/json',
+// 	    'Content-Type': 'application/json'
+// 	  },
+//     body: {
+// 		  "Name": "test_xing_2",
+// 		  "Descriptor": "try if I could create pi points using fetch api through chrome dev tools",
+// 		  "PointClass": "classic",
+// 		  "PointType": "Float32",
+// 		  "EngineeringUnits": "",
+// 		  "Step": false,
+// 		  "Future": false,
+// 		  "DisplayDigits": -5
+// 		}
+// })
+// .then(res => res.json())
+// .then((result) => {
+// 	console.log(result);
+// });
+
 	const handlePublish = () => {
 		fetch("https://api.plos.org/search?q=title:DNA") // TODO: build urls using pi web api controllers
 			.then(res => res.json())

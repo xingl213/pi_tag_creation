@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import Papa from "papaparse";
+import { Buffer } from 'buffer';
 
 function Step3() {
 
@@ -36,13 +37,22 @@ function Step3() {
 // });
 
 	const handlePublish = () => {
-		fetch("https://api.plos.org/search?q=title:DNA") // TODO: build urls using pi web api controllers
-			.then(res => res.json())
-			.then(
-				(result) => {
+		var url = "https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points?nameFilter=test_xing*";
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", url); xhr.onload = function () {
+		    console.log(xhr.status, JSON.parse(xhr.responseText));
+		    // console.log(xhr.response);
+				if (xhr.status === 200) {
 					setHasResponse(true);
-					setResponse(result.response);
-				});
+				}
+				setResponse(xhr.response);
+		}
+
+		const username = "COPR\\Xing.Ling";
+		const password = "FGyXF13579";
+		const encodedString = Buffer.from(username + ":" + password).toString('base64');
+		xhr.setRequestHeader("Authorization", "Basic " + encodedString);
+		xhr.send();
 	}
 
   const changeHandler = (event) => {
@@ -89,7 +99,7 @@ function Step3() {
 			<Button onClick={handlePublish}>Publish</Button>
 
 			<h2>Response:</h2>	
-			<div>{JSON.stringify(response)}</div>
+			<div>{response}</div>
     </div>
   );
 }

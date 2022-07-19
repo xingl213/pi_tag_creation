@@ -37,6 +37,9 @@ function Step2() {
   };
 
   const issues = FindExistingTagNames(parsedData);
+  // debugging use
+  console.log("The issues regarding naming repetition are:");
+  console.log(issues);
 
   return (
     <div className="container">

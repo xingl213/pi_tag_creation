@@ -13,7 +13,7 @@ function FindExistingTagNames(parsedData) {
 				tempResponse = xhr.response;
 		}
 
-		const username = "COPR\\Xing.Ling";
+		const username = "CORP\\Xing.Ling";
 		const password = "FGyXF13579";
 		const encodedString = Buffer.from(username + ":" + password).toString('base64');
 		xhr.setRequestHeader("Authorization", "Basic " + encodedString);

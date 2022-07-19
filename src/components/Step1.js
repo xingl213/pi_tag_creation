@@ -137,7 +137,7 @@ function Step1(props) {
           	<ul>
             	<li>Point type is one of: digital, int16, int32, float16, float32, float64, string, blob, timestamp (not case sensitive)</li>
             	<li>Don't leave any required field empty</li>
-            	<li>PI Tag structure: KIT:<strong>Sector Number</strong>-<strong>Name</strong></li>
+            	<li>PI Tag structure: <strong>KIT:Sector Number</strong>-<strong>Name</strong></li>
             	<li>Instrument tag structure: <strong>PLC Server</strong>::[<strong>PLC Name on the Server</strong>]<strong>Instrument Tag</strong></li>
           	</ul>
           </CardText>

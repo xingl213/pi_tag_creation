@@ -19,7 +19,7 @@ function FindExistingTagNames(parsedData) {
 		xhr.setRequestHeader("Authorization", "Basic " + encodedString);
 		xhr.send();
 
-		if (tempResponse != null && tempResponse["Items"].length > 0) { // pi tag name exists in data archive
+		if (tempResponse != null && tempResponse["Items"].length > 0) { // (get 200 response and) pi tag name exists in data archive
 			issueMsg = "Tag name on row " + (i+2).toString() + " already exists: " + parsedData[i]["PI Tag Name"];
 			issues.push(issueMsg);
 		}

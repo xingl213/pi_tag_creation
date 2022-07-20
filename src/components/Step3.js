@@ -37,7 +37,7 @@ function Step3() {
 // });
 
 	const handlePublish = () => {
-		var url = "https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points?nameFilter=test_xing*";
+		var url = "https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points?nameFilter=kit:*";
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", url); xhr.onload = function () {
 		    console.log(xhr.status, JSON.parse(xhr.responseText));

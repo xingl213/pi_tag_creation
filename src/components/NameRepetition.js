@@ -8,7 +8,7 @@ function FindExistingTagNames(parsedData) {
 		var issueMsg;
 		var tempResponse;
 		var jsonResponse;
-		
+
 		var url = "https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points?nameFilter=" + parsedData[i]["PI Tag Name"];
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", url); xhr.onload = function () {
@@ -20,6 +20,9 @@ function FindExistingTagNames(parsedData) {
 		const encodedString = Buffer.from(username + ":" + password).toString('base64');
 		xhr.setRequestHeader("Authorization", "Basic " + encodedString);
 		xhr.send();
+
+		// debug
+		console.log("This line was reached.")
 
 		if (tempResponse != null) { // tempResponse is a string so parse into js object first
 			jsonResponse = JSON.parse(tempResponse);

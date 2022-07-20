@@ -26,6 +26,9 @@ function FindExistingTagNames(parsedData) {
 
 		if (tempResponse != null) { // tempResponse is a string so parse into js object first
 			jsonResponse = JSON.parse(tempResponse);
+		} else { // debug
+			console.log("tempResponse wasn't initialized.");
+			console.log("Response status is " + xhr.status.toString());
 		}
 		if (jsonResponse != null && jsonResponse["Items"].length > 0) { // (get 200 response and) pi tag name exists in data archive
 			issueMsg = "Tag name on row " + (i+2).toString() + " already exists: " + parsedData[i]["PI Tag Name"];

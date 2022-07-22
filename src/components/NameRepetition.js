@@ -22,7 +22,8 @@ function FindExistingTagNames(parsedData) {
 		xhr.send();
 
 		// debug
-		console.log("This line was reached.")
+		console.log("Response status is");
+		console.log(xhr.status);
 
 		if (tempResponse != null) { // tempResponse is a string so parse into js object first
 			jsonResponse = JSON.parse(tempResponse);

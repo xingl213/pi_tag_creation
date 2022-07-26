@@ -15,6 +15,7 @@ function FindExistingTagNames(parsedData) {
 		xhr.open("GET", url); xhr.onload = function () {
 			// console.log(xhr.status, JSON.parse(xhr.responseText));
 			// tempResponse = xhr.response;
+			console.log("Response it got:")
 			console.log(xhr.response);
 			if (xhr.status == 200 && xhr.response["Items"].length > 0) {
 				indices.push(i);

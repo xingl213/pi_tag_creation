@@ -12,7 +12,8 @@ function FindExistingTagNames(parsedData) {
 		var url = "https://cakitzapp1/piwebapi/dataservers/F1DSAAAAAAAAAAAAAAAAAACCYQS0lUUEkwMQ/points?nameFilter=" + parsedData[i]["PI Tag Name"];
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", url); xhr.onload = function () {
-				tempResponse = xhr.response;
+			console.log(xhr.status, JSON.parse(xhr.responseText));
+			tempResponse = xhr.response;
 		}
 
 		const username = "CORP\\Xing.Ling";

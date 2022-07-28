@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import FindExistingTagNames from './NameRepetition';
+import Recommend from './ValuesRecommendation';
 import Papa from "papaparse";
 
 function Step2() {
@@ -37,9 +38,11 @@ function Step2() {
   };
 
   const issues = FindExistingTagNames(parsedData);
+  const messages = Recommend(parsedData);
   // debugging use
   console.log("The issues regarding naming repetition are:");
   console.log(issues);
+  console.log(messages);
 
   return (
     <div className="container">
@@ -53,6 +56,21 @@ function Step2() {
           	<ul style={{ color: "blue" }}>
             	{issues.map((issue, index) => {
             		return <li key={index}>{issue}</li>;
+            	})}
+          	</ul>
+          </CardText>
+        </CardBody>
+      </Card>
+    	<br/>
+
+      <Card>
+        <CardBody>
+          <CardTitle tag="h3" style={{ color: "red" }}>Recommendations</CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">Based on existing tags, consider changing the following values:</CardSubtitle>
+          <CardText>
+          	<ul style={{ color: "blue" }}>
+            	{messages.map((msg, index) => {
+            		return <li key={index}>{msg}</li>;
             	})}
           	</ul>
           </CardText>
